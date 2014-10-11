@@ -14,6 +14,7 @@ namespace NARDIAC
     {
         public override void Write(Cell tuple)
         {
+            if (tuple.Negative) Console.Write('-');
             Console.Write((uint)tuple.Item1);
             Console.Write((uint)tuple.Item2);
             Console.WriteLine((uint)tuple.Item3);
