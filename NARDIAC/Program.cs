@@ -12,6 +12,22 @@ namespace NARDIAC
     {
         static void Main(string[] args)
         {
+            try
+            {
+                Main_Impl(args);
+            }
+            catch (Exception e)
+            {
+                Console.Error.WriteLine(e.GetType().Name);
+                Console.Error.WriteLine("-------");
+                Console.Error.WriteLine(e.Message);
+                Console.Error.WriteLine(e.StackTrace);
+                Environment.Exit(1);
+            }
+        }
+
+        static void Main_Impl(string[] args)
+        {
             Computer c = null;
             if (args.Length == 0)
             {
@@ -29,25 +45,7 @@ namespace NARDIAC
                 return;
             }
 
-            if (Debugger.IsAttached)
-            {
-                c.Run();
-                return;
-            }
-
-            try
-            {
-                c.Run();
-            }
-            catch (Exception e)
-            {
-                
-                Console.Error.WriteLine(e.GetType().Name);
-                Console.Error.WriteLine("-------");
-                Console.Error.WriteLine(e.Message);
-                Console.Error.WriteLine(e.StackTrace);
-                Environment.Exit(1);
-            }
+            c.Run();
         }
 
         private static void Usage()
