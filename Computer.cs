@@ -50,41 +50,40 @@ namespace NARDIAC
 
         private void Step()
         {
+            // Fetch
             ir = memory[pc];
+            // Advance
             pc++;
+            // Decode
+            var instruction = Decode();
+            // Execute
+            instruction();
+        }
 
+        private Action Decode()
+        {
             switch (op)
             {
                 case Opcode.INP: // 0XY INP - Read input card into cell XY
-                    Inp();
-                    break;
+                    return Inp;
                 case Opcode.CLA: // 1XY CLA - Clear accumulator and add into it the contents of cell XY
-                    Cla();
-                    break;
+                    return Cla;
                 case Opcode.ADD: // 2XY ADD - Add contents of cell XY into accumulator.
-                    Add();
-                    break;
+                    return Add;
                 case Opcode.TAC: // 3XY TAC - Test accumulator and jump if negative.
-                    Tac();
-                    break;
+                    return Tac;
                 case Opcode.SFT: // 4XY SFT - Shift accumulator X left, then Y right
-                    Sft();
-                    break;
+                    return Sft;
                 case Opcode.OUT: // 5XY OUT - Print contents of cell XY on output card
-                    Out();
-                    break;
+                    return Out;
                 case Opcode.STO: // 6XY STO - Store contents of accumulator in cell XY.
-                    Sto();
-                    break;
+                    return Sto;
                 case Opcode.SUB: // 2XY SUB - Subtract contents of cell XY from accumulator.
-                    Sub();
-                    break;
+                    return Sub;
                 case Opcode.JMP: // 8XY JMP - Jump to XY and save PC to *99
-                    Jmp();
-                    break;
+                    return Jmp;
                 case Opcode.HRS: // 9XY HRS - Halt and reset program counter to XY. (usually 900)
-                    Hrs();
-                    break;
+                    return Hrs;
 
                 default:
                     throw new NotImplementedException(op.ToString());
