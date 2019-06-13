@@ -24,7 +24,7 @@ namespace NARDIAC
 
         static void Main_Impl(string[] args)
         {
-            Computer c = null;
+            Computer c;
             if (args.Length == 0)
             {
                 c = new Computer(new ConsoleInput(), new ConsoleOutput());
@@ -33,8 +33,7 @@ namespace NARDIAC
             {
                 c = new Computer(new FileInput(File.OpenText(args[0])), new ConsoleOutput());
             }
-
-            if (c == null)
+            else
             {
                 Usage();
                 Environment.Exit(1);

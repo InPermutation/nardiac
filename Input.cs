@@ -21,10 +21,7 @@ namespace NARDIAC
             this.reader = reader;
         }
 
-        override public Cell Read()
-        {
-            return new Cell(Digit(), Digit(), Digit());
-        }
+        override public Cell Read() => new Cell(Digit(), Digit(), Digit());
 
         private byte Digit()
         {
