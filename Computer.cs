@@ -33,8 +33,8 @@ namespace NARDIAC
 
         public Computer(Input input, Output output)
         {
-            if (input == null) throw new ArgumentNullException("input");
-            if (output == null) throw new ArgumentNullException("output");
+            if (input == null) throw new ArgumentNullException(nameof(input));
+            if (output == null) throw new ArgumentNullException(nameof(output));
             this.input = input;
             this.output = output;
         }
