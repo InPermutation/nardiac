@@ -25,9 +25,6 @@ namespace NARDIAC
                 if (index < 0 || index > 99) throw new ArgumentOutOfRangeException(nameof(index));
                 if (index == 0) throw new ArgumentOutOfRangeException(nameof(index));
                 if (index == 99 && value.Item1 != 8) throw new ArgumentException("The first digit in cell 99 must be an 8", nameof(value));
-                if (value.Item1 >= 10) throw new ArgumentException("The first digit in a cell must be 0..9", nameof(value));
-                if (value.Item2 >= 10) throw new ArgumentException("The second digit in a cell must be 0..9", nameof(value));
-                if (value.Item3 >= 10) throw new ArgumentException("The third digit in a cell must be 0..9", nameof(value));
 
                 storage[index] = value;
             }
