@@ -87,7 +87,7 @@ namespace NARDIAC
                     break;
 
                 default:
-                    throw new NotImplementedException(ir.Item1.ToString());
+                    throw new NotImplementedException(op.ToString());
             }
         }
 
