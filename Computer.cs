@@ -98,6 +98,7 @@ namespace NARDIAC
         private void Cla()
         {
             a = memory[xy];
+            carry = 0;
         }
 
         private void Add()
