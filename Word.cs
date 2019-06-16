@@ -2,14 +2,14 @@
 
 namespace NARDIAC
 {
-    public struct Cell
+    public struct Word
     {
         public readonly byte Item1;
         public readonly byte Item2;
         public readonly byte Item3;
         public readonly bool Negative;
 
-        public Cell(byte a, byte b, byte c, bool negative = false)
+        public Word(byte a, byte b, byte c, bool negative = false)
         {
             if (a > 9) throw new ArgumentException("Out of bounds", nameof(a));
             if (b > 9) throw new ArgumentException("Out of bounds", nameof(b));

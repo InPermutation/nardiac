@@ -20,8 +20,8 @@ namespace NARDIAC
     {
         bool paused = true;
         int pc = 0;
-        Cell ir; // Instruction register
-        Cell a = new Cell(0, 0, 0); // Accumulator register
+        Word ir; // Instruction register
+        Word a = new Word(0, 0, 0); // Accumulator register
         byte carry = 0; // Accumulator's carry
 
         Opcode op => (Opcode)ir.Item1;
@@ -103,8 +103,8 @@ namespace NARDIAC
 
         private void Add()
         {
-            int @int = IntFromCell(a) + IntFromCell(memory[xy]);
-            a = CellFromInt(@int);
+            int @int = IntFromWord(a) + IntFromWord(memory[xy]);
+            a = WordFromInt(@int);
             if (@int < 0) @int = -@int;
             carry = (byte)(@int / 1000);
         }
@@ -132,15 +132,15 @@ namespace NARDIAC
 
         private void Sub()
         {
-            int @int = IntFromCell(a) - IntFromCell(memory[xy]);
-            a = CellFromInt(@int);
+            int @int = IntFromWord(a) - IntFromWord(memory[xy]);
+            a = WordFromInt(@int);
             if (@int < 0) @int = -@int;
             carry = (byte)(@int / 1000);
         }
 
         private void Jmp()
         {
-            memory[99] = CellFromInt((pc % 100) + 800);
+            memory[99] = WordFromInt((pc % 100) + 800);
             pc = xy;
         }
 
@@ -150,11 +150,11 @@ namespace NARDIAC
             paused = true;
         }
 
-        private Cell CellFromInt(int i)
+        private Word WordFromInt(int i)
         {
             bool neg = i < 0;
             if (neg) i = -i;
-            return new Cell(
+            return new Word(
                 (byte)(i / 100),
                 (byte)((i % 100) / 10),
                 (byte)(i % 10),
@@ -162,7 +162,7 @@ namespace NARDIAC
                 );
         }
 
-        private int IntFromCell(Cell c)
+        private int IntFromWord(Word c)
         {
             var i = c.Item1 * 100 + c.Item2 * 10 + c.Item3;
             return c.Negative ? -i : i;

@@ -5,7 +5,7 @@ namespace NARDIAC
 {
     public abstract class Input
     {
-        abstract public Cell Read();
+        abstract public Word Read();
     }
 
     class ConsoleInput : FileInput
@@ -21,7 +21,7 @@ namespace NARDIAC
             this.reader = reader;
         }
 
-        override public Cell Read() => new Cell(Digit(), Digit(), Digit());
+        override public Word Read() => new Word(Digit(), Digit(), Digit());
 
         private byte Digit()
         {

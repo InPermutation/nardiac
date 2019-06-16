@@ -4,15 +4,15 @@ namespace NARDIAC
 {
     public class Memory
     {
-        readonly Cell[] storage = new Cell[100];
+        readonly Word[] storage = new Word[100];
 
         public Memory()
         {
-            storage[0] = new Cell(0, 0, 1);
-            storage[99] = new Cell(8, 0, 0);
+            storage[0] = new Word(0, 0, 1);
+            storage[99] = new Word(8, 0, 0);
         }
 
-        public Cell this[int index]
+        public Word this[int index]
         {
             get
             {
